@@ -4,7 +4,7 @@ version: 0.2.1
 repository: https://github.com/Hu-Wentao/appwrite_dart_wrapper
 
 environment:
-  sdk: ^2.17.7
+  sdk: '>=2.17.7 <4.0.0'
 
 # Add regular dependencies here.
 dependencies:
