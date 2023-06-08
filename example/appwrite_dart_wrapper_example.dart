@@ -1,4 +1,5 @@
 import 'package:appwrite_dart_wrapper/appwrite_dart_wrapper.dart';
+import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:dart_appwrite/src/client.dart';
 
 Future<void> main() async {
@@ -27,5 +28,16 @@ Future<Result> biz(
   Map<String, String> vars,
   Client client,
 ) async {
+//   final fnCeateDoc = buildFnCreateRecord(
+//     client,
+//     databaseId: '<your-db-id>',
+//     collectionId: '<your-doc-collection-id>',
+//   );
+
+// // use
+//   await fnCeateDoc(documentId: ID.unique(), data: {
+//     "name": 'test1',
+//     "age": 123,
+//   });
   return Result.rOk(msg: 'Yes Awesome, payloads $payload, vars $vars');
 }

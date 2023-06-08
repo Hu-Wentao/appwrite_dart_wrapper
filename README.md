@@ -16,12 +16,40 @@ and the Flutter guide for
 - startWrapper
 log req.headers, req.payload;
 parse req to headers, payload, vars,
+```dart
+Future<void> start(final req, final res) async => await startWrapper(
+      req,
+      res,
+      biz,
+      log: true,
+      debug: true, // default set false
+      // if set null, it can not use 'debug', 
+      // if set 'your-appwrite.io-user-id', only 'your-appwrite.io-user-id' user can use 'debug'
+      //    will print vars, can override vars from request body
+      debugUserId: 'your-appwrite.io-user-id or null', // default to null
+    );
+```
 
 - databases_wrapper
 Provide closure functions for Create, Update, Get, Query Document.
+```dart
+ final fnCeateDoc = buildFnCreateRecord(
+    client,
+    databaseId: '<your-db-id>',
+    collectionId: '<your-doc-collection-id>',
+  );
+
+// use
+  await fnCeateDoc(documentId: ID.unique(), data: {
+    "name": 'test1',
+    "age": 123,
+  });
+```
 
 - functions_wrapper
 Provide closure functions for Create Execution
+
+- local_test
 
 
 ## Getting started

@@ -1,3 +1,2 @@
-## 1.0.0
-
-- Initial version.
+## 0.2.0
+add localTest with local_test.dart example
