@@ -1,18 +1,15 @@
-import 'dart:convert';
-import 'dart:io';
-
 localTest(
   String fnName,
   Future Function(Req req, Res res) start, {
   Req req = const Req(),
   Res res = const Res(),
   String desc = '',
+  required Map<String, dynamic>? appwriteJson,
 }) async {
   print("localTest ===== $desc");
-  final appwriteJson =
-      jsonDecode(File('../../appwrite.json').readAsStringSync());
-  final projId = appwriteJson['projectId'];
-  final funcLs = appwriteJson['functions'] as List<dynamic>;
+  // appwriteJson ??= jsonDecode(File('../../appwrite.json').readAsStringSync());
+  final projId = appwriteJson?['projectId'];
+  final funcLs = appwriteJson?['functions'] as List<dynamic>;
   final env = funcLs.firstWhere((e) => e['name'] == fnName)['variables'];
   await start(
     Req(

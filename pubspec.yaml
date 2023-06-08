@@ -1,6 +1,6 @@
 name: appwrite_dart_wrapper
 description: Function Wrapper for dart_appwrite
-version: 0.1.1
+version: 0.2.0
 repository: https://github.com/Hu-Wentao/appwrite_dart_wrapper
 
 environment:

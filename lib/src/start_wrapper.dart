@@ -33,7 +33,7 @@ Future<void> startWrapper(
         variables
             .addAll({for (final p in payload.entries) p.key: '${p.value}'});
       } else {
-        throw "Unsupport debug, debugUserId is: ${debugUserId == null ? 'null' : 'not equal APPWRITE_FUNCTION_USER_ID'}";
+        throw "Unsupport `debug=true`,Because debugUserId is: ${debugUserId == null ? 'null' : 'not equal APPWRITE_FUNCTION_USER_ID'}";
       }
     }
 

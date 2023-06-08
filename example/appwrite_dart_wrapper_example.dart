@@ -12,9 +12,14 @@ Future<void> main() async {
   }));
 }
 
-Future<void> start(final req, final res) async =>
-    await startWrapper(req, res, biz,
-        log: true, debugUserId: '645b9f20cedaa8e07ff8');
+Future<void> start(final req, final res) async => await startWrapper(
+      req,
+      res,
+      biz,
+      log: true,
+      debug: true, // default set false
+      debugUserId: 'your-appwrite.io-user-id or null',
+    );
 
 Future<Result> biz(
   Map<String, dynamic> headers,
@@ -22,5 +27,5 @@ Future<Result> biz(
   Map<String, String> vars,
   Client client,
 ) async {
-  return Result.rOk(msg: 'Yes Awesome');
+  return Result.rOk(msg: 'Yes Awesome, payloads $payload, vars $vars');
 }
