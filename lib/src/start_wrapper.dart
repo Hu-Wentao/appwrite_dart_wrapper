@@ -61,7 +61,7 @@ Future<void> startWrapper(
     if (debug || log) print('log rst $map');
     return res.json(map);
   } catch (e, s) {
-    res.json(Result.rErr('[${req.variables['APPWRITE_FUNCTION_NAME']}]#$e', s)
+    res.json(Result.rErr('[${req.variables['APPWRITE_FUNCTION_NAME']}]#\n$e', s)
         .toJson());
   }
 }
