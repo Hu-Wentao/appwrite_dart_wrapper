@@ -17,6 +17,7 @@ localTest(
       variables: {
         ...env,
         "APPWRITE_FUNCTION_PROJECT_ID": "$projId",
+        "APPWRITE_FUNCTION_NAME": fnName,
         ...req.variables,
       },
       payload: req.payload,
