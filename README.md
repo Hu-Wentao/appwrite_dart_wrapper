@@ -13,24 +13,33 @@ and the Flutter guide for
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- startWrapper
+log req.headers, req.payload;
+parse req to headers, payload, vars,
+
+- databases_wrapper
+Provide closure functions for Create, Update, Get, Query Document.
+
+- functions_wrapper
+Provide closure functions for Create Execution
+
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```shell
+dart pub add appwrite_dart_wrapper
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+/// just paste to main.dart
 ```dart
+import 'package:appwrite_dart_wrapper/appwrite_dart_wrapper.dart';
+
 Future<void> start(final req, final res) async =>
     await startWrapper(req, res, biz,
-        log: true, debugUserId: '<your appwrite admin user id>',
+        log: true, debugUserId: '<`your appwrite admin user id` or `null`>',
         );
-
 ```
 
 ## Additional information
