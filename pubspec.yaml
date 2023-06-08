@@ -1,5 +1,5 @@
 name: appwrite_dart_wrapper
-description: A starting point for Dart libraries or applications.
+description: Function Wrapper for dart_appwrite 
 version: 0.1.0
 # repository: https://github.com/my_org/my_repo
 
