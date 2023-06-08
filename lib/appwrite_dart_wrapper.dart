@@ -1,4 +1,4 @@
-library;
+library appwrite_dart_wrapper;
 
 export 'src/start_wrapper.dart';
 export 'src/databases_wrapper.dart';
