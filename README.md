@@ -107,3 +107,9 @@ The userId of the user that triggered your function's execution. Executions trig
 
 - APPWRITE_FUNCTION_JWT
 A JSON Web Token generated for the user that executes your function.
+
+
+### cmd
+```shell
+dart pub publish --server=https://pub.dev 
+```

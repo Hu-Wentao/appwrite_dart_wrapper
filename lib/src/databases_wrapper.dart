@@ -27,12 +27,14 @@ FnOptRecord buildFnCreateRecord(
 }) =>
     ({
       required String documentId,
+      List<String>? permissions,
       Map<dynamic, dynamic>? data,
     }) =>
         Databases(client).createDocument(
           databaseId: databaseId,
           collectionId: collectionId,
           documentId: documentId,
+          permissions: permissions,
           data: data ?? {},
         );
 
@@ -44,12 +46,14 @@ FnOptRecord buildFnUpdateRecord(
 }) =>
     ({
       required String documentId,
+      List<String>? permissions,
       Map<dynamic, dynamic>? data,
     }) =>
         Databases(client).updateDocument(
           databaseId: databaseId,
           collectionId: collectionId,
           documentId: documentId,
+          permissions: permissions,
           data: data,
         );
 
