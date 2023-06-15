@@ -1,5 +1,9 @@
+## 0.4.0
+add starter
+
 ## 0.3.1
 buildFnCreateRecord, buildFnUpdateRecord add permissions
+
 ## 0.3.0
 add APPWRITE_FUNCTION_NAME to variables
 
