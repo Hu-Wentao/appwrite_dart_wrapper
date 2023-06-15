@@ -3,15 +3,15 @@ import 'dart:convert';
 import 'package:dart_appwrite/dart_appwrite.dart';
 
 /// [debugUserId] set null or uid, Preventing malicious override of [vars]
-Future<void> startWrapper(
+Future<void> starter(
   req,
   res,
   Future<Result> Function(
     Map<String, dynamic> headers,
     Map<String, dynamic> payload,
     Map<String, String> vars,
-    Client client,
-  ) biz, {
+  )
+      biz, {
   bool log = true,
   bool debug = false,
   String? debugUserId,
@@ -33,7 +33,7 @@ Future<void> startWrapper(
         variables
             .addAll({for (final p in payload.entries) p.key: '${p.value}'});
       } else {
-        throw "Unsupport `debug=true`,Because debugUserId is: ${debugUserId == null ? 'null' : 'not equal APPWRITE_FUNCTION_USER_ID'}";
+        throw "UnSupport `debug=true`,Because debugUserId is: ${debugUserId == null ? 'null' : 'not equal APPWRITE_FUNCTION_USER_ID'}";
       }
     }
 
@@ -52,10 +52,8 @@ Future<void> startWrapper(
         ].join('\n'),
       );
     }
-    // client
-    final client = withClient(req, res);
     //
-    final map = (await biz(req.headers, payload, variables, client)).toJson();
+    final map = (await biz(req.headers, payload, variables)).toJson();
 
     //
     if (debug || log) print('log rst $map');
@@ -66,22 +64,54 @@ Future<void> startWrapper(
   }
 }
 
+/// [debugUserId] set null or uid, Preventing malicious override of [vars]
+Future<void> startWrapper(
+  req,
+  res,
+  Future<Result> Function(
+    Map<String, dynamic> headers,
+    Map<String, dynamic> payload,
+    Map<String, String> vars,
+    Client client,
+  )
+      biz, {
+  bool log = true,
+  bool debug = false,
+  String? debugUserId,
+}) async =>
+    await starter(
+      req,
+      res,
+      (headers, payload, vars) async => await biz(
+        headers,
+        payload,
+        vars,
+        withClient(req, res),
+      ),
+      log: log,
+      debug: debug,
+      debugUserId: debugUserId,
+    );
+
 class Result {
   final bool ok;
   final Object? msg;
   final Map<String, Object?>? data;
   final StackTrace? trace;
+
   const Result({
     this.ok = true,
     this.msg,
     this.trace,
     this.data,
   });
+
   const Result.rOk({this.msg, this.data})
       : ok = true,
         trace = null;
 
   const Result.rErr(this.msg, this.trace, {this.data}) : ok = false;
+
   Map<String, dynamic> toJson() => {
         'ok': ok,
         if (msg != null) "msg": "$msg",
