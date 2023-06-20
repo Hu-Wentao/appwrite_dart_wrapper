@@ -10,12 +10,12 @@ localTest(
   // appwriteJson ??= jsonDecode(File('../../appwrite.json').readAsStringSync());
   final projId = appwriteJson?['projectId'];
   final funcLs = appwriteJson?['functions'] as List<dynamic>;
-  final env = funcLs.firstWhere((e) => e['name'] == fnName)['variables'];
+  final env = funcLs.firstWhere((e) => e['name'] == fnName)['variables'] as Map<String, dynamic>?;
   await start(
     Req(
       headers: req.headers,
       variables: {
-        ...env,
+        ...?env,
         "APPWRITE_FUNCTION_PROJECT_ID": "$projId",
         "APPWRITE_FUNCTION_NAME": fnName,
         ...req.variables,
