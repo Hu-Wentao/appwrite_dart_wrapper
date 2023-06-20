@@ -1,3 +1,6 @@
+## 0.4.1 
+localTest: variables can be null
+
 ## 0.4.0
 add starter
 
