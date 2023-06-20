@@ -1,3 +1,6 @@
+## 0.4.2
+downgrade sdk to `>=2.17.6`
+
 ## 0.4.1 
 localTest: variables can be null
 
