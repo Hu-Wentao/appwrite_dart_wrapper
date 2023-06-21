@@ -1,17 +1,19 @@
 import 'dart:convert';
 
 import 'package:dart_appwrite/dart_appwrite.dart';
+import 'package:get_it/get_it.dart';
+
+typedef BizFun = Future<Result> Function(
+  Map<String, dynamic> headers,
+  Map<String, dynamic> payload,
+  Map<String, String> vars,
+);
 
 /// [debugUserId] set null or uid, Preventing malicious override of [vars]
 Future<void> starter(
   req,
   res,
-  Future<Result> Function(
-    Map<String, dynamic> headers,
-    Map<String, dynamic> payload,
-    Map<String, String> vars,
-  )
-      biz, {
+  BizFun biz, {
   bool log = true,
   bool debug = false,
   String? debugUserId,
@@ -62,6 +64,31 @@ Future<void> starter(
     res.json(Result.rErr('[${req.variables['APPWRITE_FUNCTION_NAME']}]#\n$e', s)
         .toJson());
   }
+}
+
+/// starter with GetIt
+Future<void> startWithGetIt(
+  req,
+  res, {
+  GetIt? getIt,
+  required Future<void> Function(GetIt g) initDI,
+  required BizFun Function(GetIt g) setBiz,
+  bool log = true,
+  bool debug = false,
+  String? debugUserId,
+}) async {
+  await starter(
+    req,
+    res,
+    (headers, payload, vars) async {
+      final g = getIt ?? GetIt.I;
+      await initDI(g);
+      return await (setBiz(g).call(headers, payload, vars));
+    },
+    log: log,
+    debug: debug,
+    debugUserId: debugUserId,
+  );
 }
 
 /// [debugUserId] set null or uid, Preventing malicious override of [vars]
