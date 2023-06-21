@@ -82,7 +82,14 @@ Future<void> startWithGetIt(
     res,
     (headers, payload, vars) async {
       final g = getIt ?? GetIt.I;
-      await initDI(g);
+      try {
+        await initDI(g);
+      } on ArgumentError catch (e) {
+        if (e.message !=
+            'Object/factory with type Client is already registered inside GetIt. ') {
+          rethrow;
+        }
+      }
       return await (setBiz(g).call(headers, payload, vars));
     },
     log: log,
