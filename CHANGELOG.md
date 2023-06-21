@@ -1,3 +1,6 @@
+## 0.5.1
+fix startWithGetIt 'already registered' error on multi request
+
 ## 0.5.0
 feat startWithGetIt
 
