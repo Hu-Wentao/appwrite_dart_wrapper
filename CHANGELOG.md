@@ -1,3 +1,6 @@
+## 0.5.0
+feat startWithGetIt
+
 ## 0.4.2
 downgrade sdk to `>=2.17.6`
 
