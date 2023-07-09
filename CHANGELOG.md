@@ -1,3 +1,6 @@
+## 0.6.0
+add error report ERROR_REPORT_URL
+
 ## 0.5.1
 fix startWithGetIt 'already registered' error on multi request
 

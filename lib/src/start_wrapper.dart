@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dart_appwrite/dart_appwrite.dart';
 import 'package:get_it/get_it.dart';
+import 'dart:io';
 
 typedef BizFun = Future<Result> Function(
   Map<String, dynamic> headers,
@@ -61,6 +62,23 @@ Future<void> starter(
     if (debug || log) print('log rst $map');
     return res.json(map);
   } catch (e, s) {
+    final url = req.variables['ERROR_REPORT_URL'] as String?;
+    if (url != null) {
+      await HttpClient().postUrl(Uri.parse(url)).then((value) {
+        value.headers.set('Content-Type', 'application/json');
+        value.write(jsonEncode({
+          'msgtype': 'text',
+          'text': {
+            'content': '''
+FUNCTION ERROR [${req.variables['APPWRITE_FUNCTION_NAME']}]
+$e
+$s
+            '''
+          }
+        }));
+        return value.close();
+      });
+    }
     res.json(Result.rErr('[${req.variables['APPWRITE_FUNCTION_NAME']}]#\n$e', s)
         .toJson());
   }

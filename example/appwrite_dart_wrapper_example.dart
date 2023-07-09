@@ -39,5 +39,8 @@ Future<Result> biz(
 //     "name": 'test1',
 //     "age": 123,
 //   });
+
+//  test error report
+//   throw "hahaha";
   return Result.rOk(msg: 'Yes Awesome, payloads $payload, vars $vars');
 }

@@ -28,6 +28,7 @@ main() async {
           "execute": [],
           "events": [],
           "variables": {
+            // "ERROR_REPORT_URL": // if you need to report error
             "APPWRITE_FUNCTION_ENDPOINT": "https://cloud.appwrite.io",
             "APPWRITE_FUNCTION_API_KEY": "your api key",
             "YOUR_VARS": "some-value"
