@@ -1,6 +1,6 @@
 name: appwrite_dart_wrapper
 description: Function Wrapper for dart_appwrite, with error handling and dependency injection.
-version: 0.6.0
+version: 0.6.1
 repository: https://github.com/Hu-Wentao/appwrite_dart_wrapper
 #publish_to: "https://pub.dev"
 

@@ -18,6 +18,7 @@ Future<void> starter(
   bool log = true,
   bool debug = false,
   String? debugUserId,
+  Function(Object e, StackTrace s)? onError,
 }) async {
   try {
     //  payload
@@ -62,6 +63,7 @@ Future<void> starter(
     if (debug || log) print('log rst $map');
     return res.json(map);
   } catch (e, s) {
+    onError?.call(e, s);
     final url = req.variables['ERROR_REPORT_URL'] as String?;
     if (url != null) {
       await HttpClient().postUrl(Uri.parse(url)).then((value) {
@@ -94,6 +96,7 @@ Future<void> startWithGetIt(
   bool log = true,
   bool debug = false,
   String? debugUserId,
+  Function(GetIt g, Object e, StackTrace s)? onError,
 }) async {
   await starter(
     req,
@@ -113,6 +116,7 @@ Future<void> startWithGetIt(
     log: log,
     debug: debug,
     debugUserId: debugUserId,
+    onError: (e, s) => onError?.call(getIt ?? GetIt.I, e, s),
   );
 }
 
@@ -130,6 +134,7 @@ Future<void> startWrapper(
   bool log = true,
   bool debug = false,
   String? debugUserId,
+  Function(Object e, StackTrace s)? onError,
 }) async =>
     await starter(
       req,
@@ -143,6 +148,7 @@ Future<void> startWrapper(
       log: log,
       debug: debug,
       debugUserId: debugUserId,
+      onError: onError,
     );
 
 class Result {

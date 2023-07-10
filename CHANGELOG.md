@@ -1,3 +1,6 @@
+## 0.6.1 
+starter add onError
+
 ## 0.6.0
 add error report ERROR_REPORT_URL
 
